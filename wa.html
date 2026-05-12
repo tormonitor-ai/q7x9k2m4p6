@@ -19,7 +19,7 @@
   @keyframes updateFlash { 0%{background:#1e4d8c;border-color:#3b82f6;box-shadow:0 0 16px #3b82f660;color:#fff} 60%{background:#0f2744;border-color:#1e3a5f;box-shadow:none;color:#60a5fa} 100%{background:#0f2744;border-color:#1e3a5f;color:#60a5fa} }
   @keyframes dotPulse { 0%{transform:scale(1.8);box-shadow:0 0 12px #22c55e} 60%{transform:scale(1);box-shadow:0 0 6px #22c55e} 100%{transform:scale(1);box-shadow:0 0 6px #22c55e} }
   .container { max-width: 1360px; margin: 0 auto; padding: 32px 48px; }
-  .stat-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; margin-bottom: 32px; }
+  .stat-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(140px, 1fr)); gap: 16px; margin-bottom: 32px; }
   .stat-card { background: #1e2530; border: 1px solid #2d3748; border-radius: 12px; padding: 20px 24px; position: relative; overflow: hidden; cursor: pointer; transition: border-color 0.15s, transform 0.1s; }
   .stat-card:hover { border-color: #4b5563; transform: translateY(-1px); }
   .stat-card.card-active { border-color: #3b82f6; box-shadow: 0 0 0 1px #3b82f6; }
@@ -135,7 +135,7 @@
   <div class="header-top">
     <a href="index.html" style="display:inline-flex;align-items:center;gap:6px;background:#1e2530;border:1px solid #2d3748;color:#94a3b8;font-size:12px;font-weight:600;padding:6px 12px;border-radius:8px;text-decoration:none;transition:border-color 0.15s" onmouseover="this.style.borderColor='#3b82f6'" onmouseout="this.style.borderColor='#2d3748'">&#8592; All Reports</a>
     <span class="header-badge">Feature Progress</span>
-    <span class="last-updated"><span class="last-updated-dot"></span>Last updated: 12 May 2026, 14:45 WIB &nbsp;·&nbsp; Next update: 15:00 WIB</span>
+    <span class="last-updated"><span class="last-updated-dot"></span>Last updated: 12 May 2026, 14:57 WIB &nbsp;·&nbsp; Next update: 15:00 WIB</span>
     <button class="btn-pdf" onclick="window.print()">&#128438; Download PDF</button>
     <button class="btn-pdf" style="border-color:#22c55e;color:#4ade80;background:#0d2b1a" onclick="downloadHTML()">&#128190; Download HTML</button>
   </div>
@@ -148,12 +148,7 @@
   
 </div>
 <div class="container">
-  <div class="stat-grid">
-    <div class="stat-card blue card-active" id="card-all" onclick="setCardFilter('all',this)"><div class="stat-label">Total Items</div><div class="stat-value">74</div><div class="stat-sub">All tickets tracked</div></div>
-    <div class="stat-card green" id="card-done" onclick="setCardFilter('pass',this)"><div class="stat-label">Completed</div><div class="stat-value">30</div><div class="stat-sub">41% completion</div><div class="progress-track"><div class="progress-fill" style="width:41%"></div></div></div>
-    <div class="stat-card yellow" id="card-inprog" onclick="setCardFilter('in_testing',this)"><div class="stat-label">In Testing / Progress</div><div class="stat-value">29</div><div class="stat-sub">Active items</div></div>
-    <div class="stat-card red" id="card-notstarted" onclick="setCardFilter('Not Started',this)"><div class="stat-label">Not Started</div><div class="stat-value">15</div><div class="stat-sub">Pending items</div></div>
-  </div>
+  <div class="stat-grid"><div class="stat-card blue card-active" onclick="setCardFilter('all',this)"><div class="stat-label">Total</div><div class="stat-value">74</div><div class="stat-sub">All items</div></div><div class="stat-card" style="border-top-color:#60a5fa" onclick="setCardFilter('Ready Test Stag',this)"><div class="stat-label" style="font-size:11px">Ready Test Stag</div><div class="stat-value" style="color:#60a5fa">24</div></div><div class="stat-card" style="border-top-color:#34d399" onclick="setCardFilter('Pass Stag',this)"><div class="stat-label" style="font-size:11px">Pass Stag</div><div class="stat-value" style="color:#34d399">17</div></div><div class="stat-card" style="border-top-color:#6b7280" onclick="setCardFilter('Not Started',this)"><div class="stat-label" style="font-size:11px">Not Started</div><div class="stat-value" style="color:#6b7280">15</div></div><div class="stat-card" style="border-top-color:#6b7280" onclick="setCardFilter('PR',this)"><div class="stat-label" style="font-size:11px">PR</div><div class="stat-value" style="color:#6b7280">8</div></div><div class="stat-card" style="border-top-color:#3b82f6" onclick="setCardFilter('In Progress',this)"><div class="stat-label" style="font-size:11px">In Progress</div><div class="stat-value" style="color:#3b82f6">5</div></div><div class="stat-card" style="border-top-color:#9ca3af" onclick="setCardFilter('Archived',this)"><div class="stat-label" style="font-size:11px">Archived</div><div class="stat-value" style="color:#9ca3af">3</div></div><div class="stat-card" style="border-top-color:#9ca3af" onclick="setCardFilter('Expected/Known Issue',this)"><div class="stat-label" style="font-size:11px">Expected/Known Issue</div><div class="stat-value" style="color:#9ca3af">1</div></div><div class="stat-card" style="border-top-color:#16a34a" onclick="setCardFilter('Pass Stable',this)"><div class="stat-label" style="font-size:11px">Pass Stable</div><div class="stat-value" style="color:#16a34a">1</div></div></div>
   <div class="section-title" onclick="toggleSection(this)"><span class="toggle-arrow">&#9660;</span>Breakdown</div>
   <div class="section-content"><div class="charts-row">
     <div class="chart-card"><div class="chart-title">By Status</div><div class="status-list"><div class="status-row-item" data-skey="Ready Test Stag"><div class="status-dot" style="background:#60a5fa"></div><div class="status-name">Ready Test Stag</div><div class="status-bar-wrap"><div class="status-bar-track"><div class="status-bar-fill bdbar" style="width:100%;background:#60a5fa"></div></div></div><div class="status-count bdcount">24</div></div><div class="status-row-item" data-skey="Pass Stag"><div class="status-dot" style="background:#34d399"></div><div class="status-name">Pass Stag</div><div class="status-bar-wrap"><div class="status-bar-track"><div class="status-bar-fill bdbar" style="width:71%;background:#34d399"></div></div></div><div class="status-count bdcount">17</div></div><div class="status-row-item" data-skey="Not Started"><div class="status-dot" style="background:#6b7280"></div><div class="status-name">Not Started</div><div class="status-bar-wrap"><div class="status-bar-track"><div class="status-bar-fill bdbar" style="width:62%;background:#6b7280"></div></div></div><div class="status-count bdcount">15</div></div><div class="status-row-item" data-skey="PR"><div class="status-dot" style="background:#6b7280"></div><div class="status-name">PR</div><div class="status-bar-wrap"><div class="status-bar-track"><div class="status-bar-fill bdbar" style="width:33%;background:#6b7280"></div></div></div><div class="status-count bdcount">8</div></div><div class="status-row-item" data-skey="In Progress"><div class="status-dot" style="background:#3b82f6"></div><div class="status-name">In Progress</div><div class="status-bar-wrap"><div class="status-bar-track"><div class="status-bar-fill bdbar" style="width:21%;background:#3b82f6"></div></div></div><div class="status-count bdcount">5</div></div><div class="status-row-item" data-skey="Archived"><div class="status-dot" style="background:#9ca3af"></div><div class="status-name">Archived</div><div class="status-bar-wrap"><div class="status-bar-track"><div class="status-bar-fill bdbar" style="width:12%;background:#9ca3af"></div></div></div><div class="status-count bdcount">3</div></div><div class="status-row-item" data-skey="Expected/Known Issue"><div class="status-dot" style="background:#9ca3af"></div><div class="status-name">Expected/Known Issue</div><div class="status-bar-wrap"><div class="status-bar-track"><div class="status-bar-fill bdbar" style="width:4%;background:#9ca3af"></div></div></div><div class="status-count bdcount">1</div></div><div class="status-row-item" data-skey="Pass Stable"><div class="status-dot" style="background:#16a34a"></div><div class="status-name">Pass Stable</div><div class="status-bar-wrap"><div class="status-bar-track"><div class="status-bar-fill bdbar" style="width:4%;background:#16a34a"></div></div></div><div class="status-count bdcount">1</div></div></div></div>
@@ -959,7 +954,7 @@
 </div></div>
 </div>
 </div>
-<div class="generated">Last updated: 12 May 2026, 14:45 WIB &nbsp;&middot;&nbsp; Qiscus QA Team</div>
+<div class="generated">Last updated: 12 May 2026, 14:57 WIB &nbsp;&middot;&nbsp; Qiscus QA Team</div>
 <script>
 function updateSections(){
   var trs=document.querySelectorAll("#table-body tr");
@@ -996,12 +991,15 @@ function updateSections(){
 }
 function applyFilters(){
   var fAttr={all:"fAll",pass:"fPass","Not Started":"fNotstarted",in_progress:"fInprogress",in_testing:"fTesting",ready:"fReady",pending:"fPending",Bug:"fBug",Task:"fTask"};
-  var key=fAttr[activeFilter]||"fAll";
+  var key=fAttr[activeFilter];
   var rows=document.querySelectorAll("#table-body tr"),vis=0;
   var q=searchQuery.toLowerCase();
   for(var i=0;i<rows.length;i++){
     var tr=rows[i];
-    var fm=tr.getAttribute("data-"+key)==="1";
+    var fm;
+    if(activeFilter==="all"){fm=true;}
+    else if(key){fm=tr.getAttribute("data-"+key)==="1";}
+    else{fm=(tr.getAttribute("data-status")||"")===activeFilter;}
     var sm=!q||(tr.getAttribute("data-search")||"").indexOf(q)>=0;
     tr.style.display=(fm&&sm)?"":"none";
     if(fm&&sm)vis++;
